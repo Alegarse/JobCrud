@@ -3,7 +3,6 @@ Repositorio para la entrega del trabajo de CRUD.
 
 Consiste a grosso modo en un directorio de los libros y novelas de que dispongo, así como los que tengo pendietes de leer, recomendaciones, etc
 
-##Características BooksCRUD
 
 - Soporta introducción,edicción y borrado de libros;
 - Actualizacion en tiempo real: Una vez introducido un libro, se reordena el listado cronologicamente.
