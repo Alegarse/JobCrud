@@ -10,7 +10,7 @@ Consiste a grosso modo en un directorio de los libros y novelas de que dispongo,
 - Compatible con la mayoría de los navegadores (IE8+, Edge, Chrome, Opera...).
 
 
-#### Capturas de pantalla y descripción del contenido
+### Capturas de pantalla y descripción del contenido
 [![Pantalla inicial](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc1.PNG "Pantalla inicial")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc1.PNG "Pantalla inicial")
  En la pantalla inicial se expone acerca del contenido del CRUD, ademá de comentarios del autor y links de contacto.
 [![Pantalla de listado de libros leidos](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc2.PNG "Pantalla de listado de libros leidos")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc2.PNG "Pantalla de listado de libros leidos")
