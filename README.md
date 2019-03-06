@@ -21,4 +21,5 @@ En estos apartados podemos visualizar el contenido de los libros que poseemos, s
 [![Pantalla de modificacion de datos](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc5.PNG "Pantalla de modificacion de datos")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc5.PNG "Pantalla de modificacion de datos")
 Esta es la pantalla en la que se pueden editar los datos de cada seccion de los libros, con la peculiaridad de quedar bloqueado sin posibilidad de modificar su ISBN, ya que es único para cada libro.
 [![Detalle de zona de contacto](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc6.PNG "Detalle de zona de contacto")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc6.PNG "Detalle de zona de contacto")
+
 Aquí un detalle de la zona de contacto presente al pié de la página principal, con links a mis perfiles de GitHub, Linkedin y Twitter.
