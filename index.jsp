@@ -19,8 +19,8 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
-        crossorigin="anonymous">
+              integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" 
+              crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
         crossorigin="anonymous"></script>
@@ -47,8 +47,16 @@
         <div class="container">
             <div class="jumbotron jumbotron text-dark bg-warning">
                 <div class="container">
-                    <h1 class="display-4">Books Crud</h1>
-                    <p class="lead">Tu gestión de libros con unos pocos clics!</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <h1 class="display-4">Books Crud</h1>
+                            <hr class="my-4">
+                            <p class="lead">Tu gestión de libros con unos pocos clics!</p>
+                        </div>
+                        <div class="col-6">
+                           <img src="Libros.png" class="rounded float-right img-fluid">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,12 +87,12 @@
                         que simplemente vistes en alguna ocasión y tienes pendiente pedir para regalo o en tu cumpleaños :)</p>
                     <br>
                     <hr>
-                    <p class="card-text">En cada una de las secciones verás el listado de libros pertenecientes, incluyendo la opción de
-                        modificar sus datos, borrarlo en caso de que ya no pertenezca a ese apartado, e inclusive, 
+                    <p class="card-text">En cada una de las secciones verás el listado de libros pertenecientes ordenados cronologicamente,
+                        incluyendo la opción de modificar sus datos, borrarlo en caso de que ya no pertenezca a ese apartado, e inclusive, 
                         poder añadir alguno a la base de datos de ese apartado.</p>
                     <hr>
                     <p class="card-text">En nuevas versiones, se dará la posibilidad de pasar un libro de una a otra sección desde esa misma sección,
-                        ahorrando así trabajo y mejorando la funcionalidad, e inclusive, adjuntar la imagen de la portada de cada libro.</p>
+                        mejorando la funcionalidad, e inclusive, adjuntar la imagen de la portada de cada libro.</p>
 
                     <!-- Boton colocado para llamar al modal -->
                     <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#modal1">Comentario del autor</a>
@@ -116,7 +124,7 @@
             </div>
         </div>
         <div class="container text-dark text-center">
-            <p><a href="mailto:agscm2@gmail.com?Subject=Valoracion%20del%20BooksCRUD%20sobre%20Java%20y%20JSP" target="_top">© Autor: Alejandro García Serrano</a>
+            <p><a href="mailto:agscm2@gmail.com?Subject=Valoracion%20y%20comentarios%20del%20BooksCRUD%20sobre%20Java%20y%20JSP" target="_top">© Autor: Alejandro García Serrano</a>
             <dl><dd><a href="https://github.com/Alegarse" target="blank"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/alegarse" target="blank"><i
                             class="fab fa-linkedin"></i></a>
