@@ -75,7 +75,7 @@
                         <td><input type="text" required name="titulo" oninvalid="this.setCustomValidity('Por favor, introduzca el título')" 
                                    oninput="setCustomValidity('')" size="25"></td>
                         <td><input type="longtext" required name="sinopsis" oninvalid="this.setCustomValidity('Por favor, introduzca la sinopsis')" 
-                                   oninput="setCustomValidity('')" size="60"></td>
+                                   oninput="setCustomValidity('')" size="80"></td>
                         <td><input type="int" required name="fecha" oninvalid="this.setCustomValidity('Por favor, introduzca la fecha')" 
                                    oninput="setCustomValidity('')" size="6"></td>
                         <td><input type="submit" value="⛃ Grabar libro" class="btn btn-primary"></td></tr>
