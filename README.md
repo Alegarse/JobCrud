@@ -1,5 +1,5 @@
 # BooksCrud
-Repositorio para la entrega del trabajo de CRUD. 
+Repositorio para la entrega del trabajo de CRUD. Si te gusta, dame una estrella :)
 
 Consiste a grosso modo en un directorio de los libros y novelas de que dispongo, así como los que tengo pendietes de leer, recomendaciones, etc
 
