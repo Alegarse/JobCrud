@@ -49,23 +49,31 @@
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="input_autor"><b>Autor</b> </label>
-                            <input type="text" class="form-control" name="autor" value="<%= request.getParameter("autor")%>">
+                            <input type="text" class="form-control" required name="autor" 
+                                   oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" value="<%= request.getParameter("autor")%>">
                         </div>
                         <div class="form-group col-6">
                             <label for="input_titulo"><b>Título</b> </label>
-                            <input type="text" class="form-control" name="titulo" value="<%= request.getParameter("titulo")%>">
+                            <input type="text" class="form-control" required name="titulo" 
+                                   oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" value="<%= request.getParameter("titulo")%>">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-12">
                             <label for="input_sinopsis"><b>Sinopsis</b> </label>
-                            <input type="longtext" class="form-control" name="sinopsis" rows="3" value="<%= request.getParameter("sinopsis")%>">    
+                            <input type="longtext" class="form-control" required name="sinopsis" rows="3" 
+                                   oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" value="<%= request.getParameter("sinopsis")%>">    
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="input_fecha"><b>Fecha de publicación (Año)</b> </label>
-                            <input type="int" class="form-control" name="fecha" value="<%= Integer.parseInt(request.getParameter("fecha"))%>">
+                            <input type="int" class="form-control" required name="fecha" 
+                                   oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" value="<%= Integer.parseInt(request.getParameter("fecha"))%>">
                         </div>
                     </div>
                     <hr>

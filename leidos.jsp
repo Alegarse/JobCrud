@@ -68,11 +68,16 @@
                     <button type="submit" class="btn btn-light border-warning font-weight-bold"><a href="index.jsp">Ir a Inicio</a></button>
                     </th></tr>
                 <form method="get" action="grabalibroL.jsp">
-                    <tr><td><input type="" name="isbn" size="13"></td>
-                        <td><input type="text" name="autor" size="15"></td>
-                        <td><input type="text" name="titulo" size="25"></td>
-                        <td><input type="longtext" name="sinopsis" size="60"></td>
-                        <td><input type="int" name="fecha" size="6"></td>
+                    <tr><td><input type="" required name="isbn" oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" size="13"></td>
+                        <td><input type="text" required name="autor" oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" size="15"></td>
+                        <td><input type="text" required name="titulo" oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" size="25"></td>
+                        <td><input type="longtext" required name="sinopsis" oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" size="60"></td>
+                        <td><input type="int" required name="fecha" oninvalid="this.setCustomValidity('Por favor, introduzca información')" 
+                                   oninput="setCustomValidity('')" size="6"></td>
                         <td><input type="submit" value="⛃ Grabar libro" class="btn btn-primary"></td></tr>
                 </form>
 
