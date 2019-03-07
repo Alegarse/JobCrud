@@ -7,7 +7,7 @@ Consiste a grosso modo en un directorio de los libros y novelas de que dispongo,
 - Soporta introducción,edicción y borrado de libros;
 - Actualizacion en tiempo real: Una vez introducido un libro, se reordena el listado cronologicamente.
 - Trabaja sobre tres tablas de datos independientes.
-- Compatible con la mayoría de los navegadores (IE8+, Edge, Chrome, Opera...).
+- Compatible con la mayoría de los navegadores (IE8+, Edge, Chrome, Opera...) en formato desktop.
 
 
 ### Capturas de pantalla y descripción del contenido
