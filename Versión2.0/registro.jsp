@@ -63,16 +63,15 @@
         <div class="container">
                 <div class="card text-center">
                     <form class="form-inline justify-content-end mb-1 mt-1 mr-1" action="grabaUsuario.jsp" method="get" class="login-form">
-    
+                        <input type="text" class="form-control mr-1" required name="nombre" 
+                                   oninvalid="this.setCustomValidity('Por favor, introduzca su nombre y apellidos')" 
+                                   oninput="setCustomValidity('')" placeholder="Nombre y apellidos">
                         <input type="text" class="form-control mr-1" required name="usuario" 
                                    oninvalid="this.setCustomValidity('Por favor, introduzca el usuario')" 
                                    oninput="setCustomValidity('')" placeholder="Usuario">
-                            <input type="password" class="form-control mr-1" required name="contrasena" 
+                        <input type="password" class="form-control mr-1" required name="contrasena" 
                                    oninvalid="this.setCustomValidity('Por favor, introduzca la clave')" 
                                    oninput="setCustomValidity('')" placeholder="Clave">
-                            <input type="text" class="form-control mr-1" required name="nombre" 
-                                   oninvalid="this.setCustomValidity('Por favor, introduzca su nombre y apellidos')" 
-                                   oninput="setCustomValidity('')" placeholder="Nombre y apellidos">
                             <button type="submit" class="btn btn-success mr-1">Aceptar</button>
                             <a class="btn btn-dark" href="index.jsp" role="button">Cancelar</a>
                     </form>

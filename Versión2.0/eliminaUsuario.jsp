@@ -20,28 +20,21 @@
             Statement s = conexion.createStatement();
             request.setCharacterEncoding("UTF-8");
             
-            String valida = "UPDATE usuarios SET "
-                        + "verificado=1"
-                        + " WHERE usuario='" + request.getParameter("usuario") + "';";
+            String valida = "DELETE FROM usuarios "
+                        + "WHERE usuario='" + request.getParameter("usuario") + "';";
                 
                 s.execute(valida);
-                out.println("Usuario validado correctamente!");
+                out.println("Usuario eliminado correctamente!");
                 
-            //Creamos las tablas para el usuario
-            
-            //Tabla para los libros favoritos
-            String tabla1 = "CREATE TABLE "
-                    + request.getParameter("usuario")+ "_Fav ("
-                    + "ISBN BIGINT(20) PRIMARY KEY, Autor VARCHAR(40), Titulo VARCHAR(60)); ";
-            s.execute(tabla1);
-            
-            //Tabla para los libros prestados
-            String tabla2 = "CREATE TABLE "
-                    + request.getParameter("usuario")+ "_Prest ("
-                    + "ISBN BIGINT(20) PRIMARY KEY, Autor VARCHAR(40), Titulo VARCHAR(60)); ";
-            s.execute(tabla2);
+            //Eliminamos tambien sus tablas
+            String borra1 = "DROP TABLE " + request.getParameter("usuario") + "_Fav";
+            String borra2 = "DROP TABLE " + request.getParameter("usuario") + "_Prest";
+            s.execute(borra1);
+            s.execute(borra2);
 
             response.sendRedirect("admin.jsp");
+            
+
         %>
     </body>
 </html>

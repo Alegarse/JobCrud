@@ -20,7 +20,6 @@
             request.setCharacterEncoding("UTF-8");
         %>
         <%
-            request.setCharacterEncoding("UTF-8");
 
             //Recogemos los valores del formulario de Login
             String usuario = request.getParameter("usuario");
@@ -30,19 +29,23 @@
             String compruebaUsuario = "SELECT COUNT(*) AS num FROM usuarios WHERE usuario='" + usuario + "'";
             ResultSet comprueba = s.executeQuery(compruebaUsuario);
             comprueba.next();
+            out.print(compruebaUsuario);
+            
             int numero = Integer.parseInt(comprueba.getString("num"));
+            out.print(numero);
+           
             if (numero == 0) {
                 response.sendRedirect("noUser.jsp");
-            }
+            } else { 
             //Comprobamos si el usuario está validado en la BBDD
-            String compruebaValid = "SELECT verificado FROM usuarios WHERE usuario='" + usuario + "'";
-            ResultSet valid = s.executeQuery(compruebaValid);
-            valid.next();
-            int numValid = Integer.parseInt(valid.getString("verificado"));
-            if (numValid == 0) {
+                String compruebaValid = "SELECT verificado FROM usuarios WHERE usuario='" + usuario + "'";
+                ResultSet valid = s.executeQuery(compruebaValid);
+                valid.next();
+                int numValid = Integer.parseInt(valid.getString("verificado"));
+                if (numValid == 0) {
                 response.sendRedirect("noValid.jsp");
 
-            } else {
+                } else {
 
                 //Verificamos que el usuario y contraseña coincidan y vemos que tipo de usuario es
                 String busqueda = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
@@ -70,10 +73,12 @@
                         response.sendRedirect("admin.jsp");
                     }
                 } else {
+                    
         %>
         <p>Nombre de usuario o contraseña incorrecto</p>
         <p>Vuelva a la página de <a href="login.jsp">Login</a></p>
         <%
+                    }
                 }
             }
         %>

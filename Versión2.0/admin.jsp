@@ -53,12 +53,12 @@
         <div class="container-fluid">
             <div class="logeo">
                 <div class="card text-center">
-                    <ul class="nav nav-pills justify-content-end">
+                    <ul class="nav nav-pills justify-content-end mb-1 mt-1 mr-1">
                         <%
                             if (session.getAttribute("usuario") != null) {
                         %>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link mr-1" href="#">
                                 <%
                                     String usr = (String) session.getAttribute("usuario");
                                     usr = Character.toUpperCase(usr.charAt(0)) + usr.substring(1, usr.length());
@@ -70,7 +70,7 @@
                             <a class="nav-link btn btn-light border-warning font-weight-bold mr-1" href="index.jsp">Ir a Inicio ♻</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-danger mr-1" href="logout.jsp">Cerrar sesión ✕</a>
+                            <a class="nav-link btn btn-outline-danger" href="logout.jsp">Cerrar sesión ✕</a>
                         </li>
 
                         <%
@@ -87,9 +87,9 @@
             <%  ResultSet usuarios = s.executeQuery("SELECT * FROM usuarios");%>
             <div class="row">
                 <div class="col-6">
-                    <table class="table table-hover">
+                    <table class="table table-hover text-center">
                         <h1 class="display-5 text-center">Listado de usuarios</h1>
-                        <tr><th>Tipo</th><th>Usuario</th><th>Clave</th><th>Verificado</th><th>Nombre y apellidos</th><th>Validar usuario</th></tr>
+                        <tr><th>Tipo</th><th>Usuario</th><th>Clave</th><th>Activo</th><th>Nombre y apellidos</th><th>Validar usuario</th><th>Eliminar usuario</th></tr>
                                 <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
 
                         <%  while (usuarios.next()) {
@@ -107,6 +107,12 @@
                                 <input type="submit" value="✔" class="btn btn-info"> 
                             </form>
                         </td>
+                        <td>
+                            <form method="get" action="eliminaUsuario.jsp">
+                                <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
+                                <input type="submit" value="✕" class="btn btn-danger"> 
+                            </form>
+                        </td>
 
                         <%}%>
                     </table>
@@ -115,7 +121,7 @@
                 <%--  Cargamos los datos de usuarios de la BBDD a un listado  --%>
                 <%  ResultSet libros = s.executeQuery("SELECT * FROM libros ORDER BY fecha DESC");%>
                 <div class="col-6">
-                    <table class="table table-hover table-dark">
+                    <table class="table table-hover table-dark text-center">
                         <h1 class="display-5 text-center">Listado de libros</h1>
                         <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Fecha</th></tr>
                                 <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>

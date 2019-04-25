@@ -31,6 +31,8 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        <link href="favicon.ico" rel="shortcut icon">
+        <title>BooksCRUD</title>
 
     </head>
     <body>
@@ -63,7 +65,7 @@
         <div class="container">
             <div class="logeo">
                 <div class="card text-center">
-                    <ul class="nav nav-pills justify-content-end">
+                    <ul class="nav nav-pills justify-content-end mb-1 mt-1 mr-1">
                         <%
                             if (session.getAttribute("usuario") != null) {
                         %>
