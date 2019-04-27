@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <%-- Para poder usar BootStrap4  --%>
+        <!-- Para poder usar BootStrap4  -->
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
@@ -31,11 +31,13 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        <link href="favicon.ico" rel="shortcut icon">
+        <title>BooksCRUD</title>
 
     </head>
     <body>
-        <%--  Posibilitar uso de conexión del JSP a BBDD  --%>
 
+        <!--  Posibilitar uso de conexión del JSP a BBDD  -->
         <%
             Class.forName("com.mysql.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookscrud", "root", "");
@@ -43,7 +45,9 @@
             request.setCharacterEncoding("UTF-8");
         %> 
 
-        <%--  Jumbotron BootStrap de presentación de la Web del CRUD  --%>
+
+
+        <!--  Jumbotron BootStrap de presentación de la Web del CRUD  -->
         <div class="container">
             <div class="jumbotron jumbotron text-dark bg-warning">
                 <div class="container">
@@ -61,18 +65,18 @@
             </div>
         </div>
         <div class="container">
-                <div class="card text-center">
-                    <form class="form-inline justify-content-end mb-1 mt-1 mr-1" action="compruebaUsuario.jsp" method="post" class="login-form">
-                            <input type="text" class="form-control mr-1" required name="usuario" 
-                                   oninvalid="this.setCustomValidity('Por favor, introduzca el usuario')" 
-                                   oninput="setCustomValidity('')" placeholder="Usuario">
-                            <input type="password" class="form-control mr-1" required name="contrasena" 
-                                   oninvalid="this.setCustomValidity('Por favor, introduzca la clave')" 
-                                   oninput="setCustomValidity('')" placeholder="Clave">
-                            <button type="submit" class="btn btn-success mr-1">Aceptar</button>
-                            <a class="btn btn-dark" href="index.jsp" role="button">Cancelar</a>
-                    </form>
-                </div>
+            <div class="card text-center">
+                <form class="form-inline justify-content-end mb-1 mt-1 mr-1" action="compruebaUsuario.jsp" method="post" class="login-form">
+                    <input type="text" class="form-control mr-1" required name="usuario" 
+                           oninvalid="this.setCustomValidity('Por favor, introduzca el usuario')" 
+                           oninput="setCustomValidity('')" placeholder="Usuario">
+                    <input type="password" class="form-control mr-1" required name="contrasena" 
+                           oninvalid="this.setCustomValidity('Por favor, introduzca la clave')" 
+                           oninput="setCustomValidity('')" placeholder="Clave">
+                    <button type="submit" class="btn btn-success mr-1">Aceptar</button>
+                    <a class="btn btn-dark" href="index.jsp" role="button">Cancelar</a>
+                </form>
+            </div>
         </div>
 
         <div class="container">
@@ -80,7 +84,7 @@
                 <div class="card-header">
                     <ul class="nav nav-pills card-header-pills">
                         <li class="nav-item justify-content-start">
-                            <a class="nav-link" href="leidos.jsp">Libros disponibles</a>
+                            <a class="nav-link" href="disponibles.jsp">Catálogo de libros disponibles</a>
                         </li>
                     </ul>
                 </div>
@@ -88,8 +92,8 @@
                     <h5 class="card-title">Bienvenido a tu librería</h5>
                     <hr>
                     <p class="card-text">Puedes consultar la lista de libros existentes, pero si quieres poder 
-                        gestionar tu colección de libros, ya sea para apuntar cuales son aquellos que tienes y cuales
-                        te han prestado, debes registrarte y podrás disfrutar de estas funcionalidades ;) </p>
+                        gestionar tu colección de libros, ya sea para apuntar cuales son aquellos que tienes pendientes de leer
+                        y cuales tienes en prestamo, debes registrarte y podrás disfrutar de estas funcionalidades ;) </p>
 
                     <!-- Boton colocado para llamar al modal -->
                     <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#modal1">Comentario del autor</a>
@@ -130,6 +134,19 @@
                 </dd>
             </dl>
         </div>
+
+        <!-- Ventana emergente para informar de contraseña logeo erronea si procede-->
+        <%
+            if (session.getAttribute("mensaje").equals("novalidP")) {
+        %>
+        <script>
+            window.alert("Error. Contraseña incorrecta. Inténtelo de nuevo.", "height=200,width=700,titlebar=no,left=300,top=300");
+        </script> 
+        <%
+                session.setAttribute("mensaje", "novalid");
+            }
+        %>
+
     </body>
 </html>
 

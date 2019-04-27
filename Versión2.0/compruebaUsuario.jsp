@@ -20,7 +20,6 @@
             request.setCharacterEncoding("UTF-8");
         %>
         <%
-
             //Recogemos los valores del formulario de Login
             String usuario = request.getParameter("usuario");
             String contrasena = request.getParameter("contrasena");
@@ -30,54 +29,54 @@
             ResultSet comprueba = s.executeQuery(compruebaUsuario);
             comprueba.next();
             out.print(compruebaUsuario);
-            
+
             int numero = Integer.parseInt(comprueba.getString("num"));
             out.print(numero);
-           
+
             if (numero == 0) {
                 response.sendRedirect("noUser.jsp");
-            } else { 
-            //Comprobamos si el usuario está validado en la BBDD
+            } else {
+                //Comprobamos si el usuario está validado en la BBDD
                 String compruebaValid = "SELECT verificado FROM usuarios WHERE usuario='" + usuario + "'";
                 ResultSet valid = s.executeQuery(compruebaValid);
                 valid.next();
                 int numValid = Integer.parseInt(valid.getString("verificado"));
                 if (numValid == 0) {
-                response.sendRedirect("noValid.jsp");
+                    response.sendRedirect("noValid.jsp");
 
                 } else {
 
-                //Verificamos que el usuario y contraseña coincidan y vemos que tipo de usuario es
-                String busqueda = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
-                ResultSet lista = s.executeQuery(busqueda);
-                lista.next();
-                String tipo = "" + lista.getString("Tipo") + "";
-                String user = "" + lista.getString("Usuario") + "";
-                String pass = "" + lista.getString("Clave") + "";
-                String verificado = "" + lista.getString("Verificado") + "";
+                    //Verificamos que el usuario y contraseña coincidan y vemos que tipo de usuario es
+                    String busqueda = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
+                    ResultSet lista = s.executeQuery(busqueda);
+                    lista.next();
+                    String tipo = "" + lista.getString("Tipo") + "";
+                    String user = "" + lista.getString("Usuario") + "";
+                    String pass = "" + lista.getString("Clave") + "";
+                    String verificado = "" + lista.getString("Verificado") + "";
 
-                // Instancia de la clase MessageDigest para métodos de encriptación.
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                // Actualiza la instancia con la cadena que queremos encriptar
-                md.update(contrasena.getBytes());
-                // Crea el hash que comprobaremos con el existente en la BBDD
-                String hash = DatatypeConverter.printHexBinary(md.digest());
+                    // Instancia de la clase MessageDigest para métodos de encriptación.
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    // Actualiza la instancia con la cadena que queremos encriptar
+                    md.update(contrasena.getBytes());
+                    // Crea el hash que comprobaremos con el existente en la BBDD
+                    String hash = DatatypeConverter.printHexBinary(md.digest());
 
-                if (usuario.equals(user) && hash.equals(pass) && verificado.equals("1")) {
-                    session.setAttribute("usuario", usuario);
-                    if (tipo.equals("normal")) {
-                        session.setAttribute("sesion", tipo);
-                        response.sendRedirect("perfil.jsp");
+                    if (usuario.equals(user) && hash.equals(pass) && verificado.equals("1")) {
+                        session.setAttribute("usuario", usuario);
+                        session.setAttribute("mensaje", "valid");
+
+                        if (tipo.equals("normal")) {
+                            session.setAttribute("sesion", tipo);
+                            response.sendRedirect("perfil.jsp");
+                        } else {
+                            session.setAttribute("sesion", tipo);
+                            response.sendRedirect("admin.jsp");
+                        }
                     } else {
-                        session.setAttribute("sesion", tipo);
-                        response.sendRedirect("admin.jsp");
-                    }
-                } else {
-                    
-        %>
-        <p>Nombre de usuario o contraseña incorrecto</p>
-        <p>Vuelva a la página de <a href="login.jsp">Login</a></p>
-        <%
+                        session.setAttribute("mensaje", "novalidP");
+                        response.sendRedirect("login.jsp");
+
                     }
                 }
             }

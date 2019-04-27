@@ -35,27 +35,27 @@
             comprueba.next();
 
             int numero = Integer.parseInt(comprueba.getString("num"));
+            // Instancia de la clase MessageDigest para métodos de encriptación.
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            // Actualiza la instancia con la cadena que queremos encriptar
+            md.update(request.getParameter("contrasena").getBytes());
+            // Crea el hash que comprobaremos con el existente en la BBDD
+            String hash = DatatypeConverter.printHexBinary(md.digest());
 
             if (numero != 0) { //Al contener fila indicaría que ya está en la BBDD
-                response.sendRedirect("User.jsp");
-            } else {
+                session.setAttribute("mensaje", "validEU");
+                response.sendRedirect("registro.jsp");
 
-                // Instancia de la clase MessageDigest para métodos de encriptación.
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                // Actualiza la instancia con la cadena que queremos encriptar
-                md.update(request.getParameter("contrasena").getBytes());
-                // Crea el hash que comprobaremos con el existente en la BBDD
-                String hash = DatatypeConverter.printHexBinary(md.digest());
+            } else {
 
                 String grabacion = "INSERT INTO usuarios (usuario, clave, nombre) VALUES ('";
                 grabacion += request.getParameter("usuario") + "', '";
                 grabacion += hash + "', '";
                 grabacion += request.getParameter("nombre") + "')";
-
-                out.print(grabacion);
+                session.setAttribute("mensaje", "validUR");
 
                 s.execute(grabacion);
-                out.println("Usuario grabado correctamente!");%>
+        %>
 
         <script>
             // Volvemos al index

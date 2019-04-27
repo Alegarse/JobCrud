@@ -31,7 +31,7 @@
 
     </head>
     <body>
-        <%--  Jumbotron BootStrap de presentación de la Web del CRUD  --%>
+        <!--  Jumbotron BootStrap de presentación de la Web del CRUD  -->
         <div class="container">
             <div class="jumbotron jumbotron text-dark bg-warning">
                 <div class="container">
@@ -51,7 +51,7 @@
                             <p class="card-text text-center">Ha introducido un nombre de usuario ya existente en nuestra base de datos.
                                 Por favor, vuelva a la pagina de Registro para intentarlo de nuevo. Gracias!) </p>
                             <div class="row justify-content-center">
-                            <a class="btn btn-outline-info" href="registro.jsp">Ir a Registro ➤</a>
+                                <a class="btn btn-outline-info" href="registro.jsp">Ir a Registro ➤</a>
                             </div>
                     </div>
                 </div>

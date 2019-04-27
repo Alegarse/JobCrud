@@ -13,7 +13,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <%-- Para poder usar BootStrap4  --%>
+
+
+        <!-- Para poder usar BootStrap4  -->
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
@@ -36,7 +38,8 @@
 
     </head>
     <body>
-        <%--  Posibilitar uso de conexión del JSP a BBDD  --%>
+
+        <!--  Posibilitar uso de conexión del JSP a BBDD  -->
 
         <%
             Class.forName("com.mysql.jdbc.Driver");
@@ -85,8 +88,8 @@
 
                             <%}
                                 if (session.getAttribute("sesion").equals("normal")) {%>
-                                <a class="nav-link btn btn-outline-success mr-1" href="perfil.jsp">Ir al perfil ➤</a>
-                                
+                            <a class="nav-link btn btn-outline-success mr-1" href="perfil.jsp">Ir al perfil ➤</a>
+
                             <% }%>
                         </li>
                         <li class="nav-item">
@@ -112,7 +115,7 @@
                 <div class="card-header">
                     <ul class="nav nav-pills card-header-pills">
                         <li class="nav-item justify-content-start">
-                            <a class="nav-link" href="disponibles.jsp">Libros disponibles</a>
+                            <a class="nav-link" href="disponibles.jsp">Catálogo de libros disponibles</a>
                         </li>
                     </ul>
                 </div>
@@ -120,11 +123,11 @@
                     <h5 class="card-title">Bienvenido a tu librería</h5>
                     <hr>
                     <p class="card-text">Puedes consultar la lista de libros existentes, pero si quieres poder 
-                        gestionar tu colección de libros, ya sea para apuntar cuales son aquellos que tienes y cuales
-                        te han prestado, debes registrarte y podrás disfrutar de estas funcionalidades ;) </p>
+                        gestionar tu colección de libros, ya sea para apuntar cuales son aquellos que tienes pendientes de leer
+                        y cuales tienes en prestamo, debes registrarte y podrás disfrutar de estas funcionalidades ;) </p>
 
                     <!-- Boton colocado para llamar al modal -->
-                    <a class="btn btn-primary btn-lg" href="#" role="button" data-toggle="modal" data-target="#modal1">Comentario del autor</a>
+                    <a class="btn btn-primary btn-lg border-secondary" href="#" role="button" data-toggle="modal" data-target="#modal1">Comentario del autor</a>
 
                     <!-- Codigo del modal de BootStrap -->
                     <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -162,6 +165,22 @@
                 </dd>
             </dl>
         </div>
+
+        <!-- Ventana emergente para informar de registro correcto si corresponde-->
+        <%
+            if ((session.getAttribute("mensaje") != null) && (session.getAttribute("mensaje").equals("validUR"))) {
+        %>
+        <script>
+            window.alert("Usuario registrado correctamente. En un máximo de 24 hrs. se procederá a su activación.", "height=200,width=700,titlebar=no,left=300,top=300");
+        </script> 
+        <%
+                session.setAttribute("mensaje", "novalid");
+            } else {
+                session.setAttribute("mensaje", "novalid");
+            }
+        %>
+
+
     </body>
 </html>
 

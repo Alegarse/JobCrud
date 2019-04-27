@@ -24,9 +24,10 @@
         <link rel="stylesheet" href="miestilo.css">
         <link href="favicon.ico" rel="shortcut icon">
         <title>BooksCRUD</title>
+
+        <title>Página de administracion </title>
     </head>
     <body>
-        <!--  Para impedir que un usuario diferente a admin acceda esta web  -->
         <%
             if (!session.getAttribute("sesion").equals("admin")) {
                 response.sendRedirect("index.jsp");
@@ -81,29 +82,36 @@
                 </div>
             </div>
         </div>
+        <div class="container-fluid"><br></div>
         <div class="container-fluid">
 
             <!--  Cabecera para la posibilidad de introducir los datos de un nuevo libro  -->
 
             <table class="table table-striped text-center table-success">
-                <h1 class="display-5 text-center">Incorporar nuevo libro a la biblioteca</h1>
+                <h1 class="display-5 text-center">Editando libro ISBN <%=request.getParameter("isbn")%></h1>
                 <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Sinopsis</th><th>Fecha</th><th>Opciones</th><th>
                     </th></tr>
-                <form method="post" action="grabalibro.jsp">
-                    <tr><td><input type="text" class="form-control border border-secondary" required name="isbn" oninvalid="this.setCustomValidity('Por favor, introduzca el ISBN')" 
-                                   oninput="setCustomValidity('')" size="13"></td>
-                        <td><input type="text" class="form-control border border-secondary" required name="autor" oninvalid="this.setCustomValidity('Por favor, introduzca el autor')" 
-                                   oninput="setCustomValidity('')" size="15"></td>
-                        <td><input type="text" class="form-control border border-secondary" required name="titulo" oninvalid="this.setCustomValidity('Por favor, introduzca el título')" 
-                                   oninput="setCustomValidity('')" size="25"></td>
-                        <td><input type="longtext" class="form-control border border-secondary" required name="sinopsis" oninvalid="this.setCustomValidity('Por favor, introduzca la sinopsis')" 
-                                   oninput="setCustomValidity('')" size="80"></td>
-                        <td><input type="int" class="form-control border border-secondary" required name="fecha" oninvalid="this.setCustomValidity('Por favor, introduzca la fecha')" 
-                                   oninput="setCustomValidity('')" size="6"></td>
-                        <td><input type="submit" value="⛃ Grabar libro" class="btn btn-primary"></td></tr>
+                <form method="post" action="modilibro.jsp">
+                    <tr><td width="11%"><input type="bigint" class="form-control" name="isbn" value="<%= request.getParameter("isbn")%>" readonly></td>
+                        <td width="15%"><input type="text" class="form-control" required name="autor" 
+                                               oninvalid="this.setCustomValidity('Por favor, introduzca el autor')" 
+                                               oninput="setCustomValidity('')" value="<%= request.getParameter("autor")%>"></td>
+                        <td width="18%"><input type="text" class="form-control" required name="titulo" 
+                                               oninvalid="this.setCustomValidity('Por favor, introduzca el título')" 
+                                               oninput="setCustomValidity('')" value="<%= request.getParameter("titulo")%>"></td>
+                        <td width="45%"><input type="longtext" class="form-control" required name="sinopsis" rows="3" 
+                                               oninvalid="this.setCustomValidity('Por favor, introduzca la sinopsis')" 
+                                               oninput="setCustomValidity('')" value="<%= request.getParameter("sinopsis")%>"></td>
+                        <td width="6%"><input type="int" class="form-control" required name="fecha" 
+                                              oninvalid="this.setCustomValidity('Por favor, introduzca la fecha')" 
+                                              oninput="setCustomValidity('')" value="<%= Integer.parseInt(request.getParameter("fecha"))%>"></td>
+                        <td width="3%"><button type="submit" class="btn btn-success">✔</button></td>
+                        <td width="3%"><button type="submit" class="btn btn-warning"><a href="admin.jsp">✖</a></button></td></tr>
+
                 </form>
             </table>
         </div>
+        <div class="container-fluid"><br></div>
 
         <div class="container-fluid">
 
@@ -113,33 +121,28 @@
                 <div class="col-6">
                     <table class="table table-hover text-center">
                         <h1 class="display-5 text-center">Listado de usuarios</h1>
-                        <tr><th>Tipo</th><th>Usuario</th><th>Activo</th><th>Nombre y apellidos</th><th>Validar usuario</th><th>Eliminar usuario</th><th>Convertir admin</th></tr>
+                        <tr><th>Tipo</th><th>Usuario</th><th>Clave</th><th>Activo</th><th>Nombre y apellidos</th><th>Validar usuario</th><th>Eliminar usuario</th></tr>
+                                <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
 
-                        <!--  Listado de los usuarios existentes en la BBDD con formateo en tabla  -->
                         <%  while (usuarios.next()) {
                                 out.println("<tr><td>");
                                 out.println(usuarios.getString("tipo") + "</td>");
                                 out.println("<td>" + usuarios.getString("usuario") + "</td>");
+                                out.println("<td>" + usuarios.getString("clave") + "</td>");
                                 out.println("<td>" + usuarios.getString("verificado") + "</td>");
                                 out.println("<td>" + usuarios.getString("nombre") + "</td>");
 
                         %>
                         <td>
-                            <form method="post" action="validaUsuario.jsp">
+                            <form method="get" action="validaUsuario.jsp">
                                 <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
                                 <input type="submit" value="✔" class="btn btn-info"> 
                             </form>
                         </td>
                         <td>
-                            <form method="post" action="eliminaUsuario.jsp">
+                            <form method="get" action="eliminaUsuario.jsp">
                                 <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
                                 <input type="submit" value="✖" class="btn btn-danger"> 
-                            </form>
-                        </td>
-                        <td>
-                            <form method="post" action="convertirAdmin.jsp">
-                                <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
-                                <input type="submit" value="⚕" class="btn btn-danger"> 
                             </form>
                         </td>
 
@@ -147,10 +150,10 @@
                     </table>
                 </div>
 
-                <!--  Cargamos los datos de libros de la BBDD a un listado  -->
+                <!--  Cargamos los datos de usuarios de la BBDD a un listado  -->
                 <%  ResultSet libros = s.executeQuery("SELECT * FROM libros ORDER BY fecha DESC");%>
                 <div class="col-6">
-                    <table class="table table-hover table-white text-center">
+                    <table class="table table-hover table-dark text-center">
                         <h1 class="display-5 text-center">Listado de libros</h1>
                         <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Editar</th><th>Borrar</th></tr>
                                 <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
@@ -164,7 +167,7 @@
                         <!--  Añadimos botón al final para la opción de modificar cada libro  -->
 
                         <td>
-                            <form method="post" action="editalibro.jsp">
+                            <form method="get" action="editalibro.jsp">
                                 <input type="hidden" name="isbn" value="<%=libros.getString("isbn")%>">
                                 <input type="hidden" name="autor" value="<%=libros.getString("autor")%>">
                                 <input type="hidden" name="titulo" value="<%=libros.getString("titulo")%>">
@@ -177,7 +180,7 @@
                         <!-- Añadimos botón al final para la opción de eliminar un libro determinado  -->
 
                         <td>
-                            <form method="post" action="borralibro.jsp">
+                            <form method="get" action="borralibro.jsp">
                                 <input type="hidden" name="isbn" value="<%=libros.getString("isbn")%>"/>
                                 <input type="submit" value="✖" class="btn btn-danger">
                             </form>
@@ -189,69 +192,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Ventanas scripts emergentes para informar de mensajes de estado -->
-
-        <% if (session.getAttribute("mensaje").equals("valid")) { %>
-        <script>
-            window.alert("Usuario logeado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("regE")) { %>
-        <script>
-            window.alert("Error. El ISBN del libro a introducir ya existe en la BBDD.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("regOK")) { %>
-        <script>
-            window.alert("Libro guardado correctamente en la BBDD.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userD")) { %>
-        <script>
-            window.alert("Usuario eliminado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userV")) { %>
-        <script>
-            window.alert("Usuario validado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroM")) { %>
-        <script>
-            window.alert("Libro modificado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroB")) { %>
-        <script>
-            window.alert("Libro borrado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userAV")) { %>
-        <script>
-            window.alert("El usuario ya ha sido validado anteriormente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userCA")) { %>
-        <script>
-            window.alert("El usuario ha sido convertido a administrador.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userAA")) { %>
-        <script>
-            window.alert("El usuario ya es administrdor.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }%>
 
 
     </body>

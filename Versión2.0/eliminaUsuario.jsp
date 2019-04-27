@@ -19,22 +19,37 @@
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookscrud", "root", "");
             Statement s = conexion.createStatement();
             request.setCharacterEncoding("UTF-8");
-            
-            String valida = "DELETE FROM usuarios "
+
+            ResultSet users = s.executeQuery("SELECT verificado FROM usuarios WHERE usuario='" + request.getParameter("usuario") + "'");
+            users.next();
+            String valid = users.getString("verificado");
+
+            if (valid.equals("0")) {
+
+                String borra = "DELETE FROM usuarios "
                         + "WHERE usuario='" + request.getParameter("usuario") + "';";
-                
-                s.execute(valida);
-                out.println("Usuario eliminado correctamente!");
-                
-            //Eliminamos tambien sus tablas
-            String borra1 = "DROP TABLE " + request.getParameter("usuario") + "_Fav";
-            String borra2 = "DROP TABLE " + request.getParameter("usuario") + "_Prest";
-            s.execute(borra1);
-            s.execute(borra2);
+                session.setAttribute("mensaje", "userD");
+                s.execute(borra);
+                response.sendRedirect("admin.jsp");
+            }
 
-            response.sendRedirect("admin.jsp");
-            
+            if (valid.equals("1")) {
 
+                String borra = "DELETE FROM usuarios "
+                        + "WHERE usuario='" + request.getParameter("usuario") + "';";
+                session.setAttribute("mensaje", "userD");
+                s.execute(borra);
+
+                //Eliminamos tambien sus tablas
+                String borra1 = "DROP TABLE " + request.getParameter("usuario") + "_Fav";
+                String borra2 = "DROP TABLE " + request.getParameter("usuario") + "_Prest";
+                s.execute(borra1);
+                s.execute(borra2);
+                session.setAttribute("mensaje", "userD");
+
+                response.sendRedirect("admin.jsp");
+
+            }
         %>
     </body>
 </html>

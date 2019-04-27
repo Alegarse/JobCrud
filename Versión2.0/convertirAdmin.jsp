@@ -20,38 +20,23 @@
             Statement s = conexion.createStatement();
             request.setCharacterEncoding("UTF-8");
 
-            ResultSet listado = s.executeQuery("SELECT verificado FROM usuarios WHERE usuario='" + request.getParameter("usuario") + "'");
+            ResultSet listado = s.executeQuery("SELECT tipo FROM usuarios WHERE usuario='" + request.getParameter("usuario") + "'");
             listado.next();
-            String verif = listado.getString("verificado");
+            String verif = listado.getString("tipo");
 
-            if (verif.equals("0")) {
+            if (verif.equals("normal")) {
 
                 String valida = "UPDATE usuarios SET "
-                        + "verificado=1"
+                        + "tipo='admin'"
                         + " WHERE usuario='" + request.getParameter("usuario") + "';";
-
+                session.setAttribute("mensaje", "userCA");
                 s.execute(valida);
-
-                //Creamos las tablas para el usuario
-                //Tabla para los libros favoritos
-                String tabla1 = "CREATE TABLE "
-                        + request.getParameter("usuario") + "_Fav ("
-                        + "ISBN BIGINT(20) PRIMARY KEY, Autor VARCHAR(40), Titulo VARCHAR(60)); ";
-                s.execute(tabla1);
-
-                //Tabla para los libros prestados
-                String tabla2 = "CREATE TABLE "
-                        + request.getParameter("usuario") + "_Prest ("
-                        + "ISBN BIGINT(20) PRIMARY KEY, Autor VARCHAR(40), Titulo VARCHAR(60)); ";
-                s.execute(tabla2);
                 response.sendRedirect("admin.jsp");
-                session.setAttribute("mensaje", "userV");
 
             } else {
-                session.setAttribute("mensaje", "userAV");
+                session.setAttribute("mensaje", "userAA");
                 response.sendRedirect("admin.jsp");
             }
-
-        %>
+             %>
     </body>
 </html>

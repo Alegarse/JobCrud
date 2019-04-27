@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <%-- Para poder usar BootStrap4  --%>
+        <!-- Para poder usar BootStrap4  -->
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
@@ -28,10 +28,12 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        <link href="favicon.ico" rel="shortcut icon">
+        <title>BooksCRUD</title>
 
     </head>
     <body>
-        <%--  Jumbotron BootStrap de presentación de la Web del CRUD  --%>
+        <!--  Jumbotron BootStrap de presentación de la Web del CRUD  -->
         <div class="container">
             <div class="jumbotron jumbotron text-dark bg-warning">
                 <div class="container">
@@ -51,7 +53,7 @@
                             <p class="card-text text-center">Ha introducido un nombre de usuario incorrecto no existente en nuestra base de datos.
                                 Por favor, vuelva a la pagina de Login para intentarlo de nuevo. Gracias!) </p>
                             <div class="row justify-content-center">
-                            <a class="btn btn-outline-info" href="login.jsp">Ir a Login ➤</a>
+                                <a class="btn btn-outline-info" href="login.jsp">Ir a Login ➤</a>
                             </div>
                     </div>
                 </div>
