@@ -13,10 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-
-
         <!-- Para poder usar BootStrap4  -->
-
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous">
@@ -33,11 +30,15 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="favicon.ico" rel="shortcut icon">
         <title>BooksCRUD</title>
 
     </head>
     <body>
+
 
         <!--  Posibilitar uso de conexión del JSP a BBDD  -->
 
@@ -167,14 +168,19 @@
         </div>
 
         <!-- Ventana emergente para informar de registro correcto si corresponde-->
+        <script>
+            function alert() {
+                swal('Usuario registrado correctamente', 'En un máximo de 24 hrs. se procederá a su activación.', 'success'); //Tb al final error para fallos
+            }
+        </script>
         <%
             if ((session.getAttribute("mensaje") != null) && (session.getAttribute("mensaje").equals("validUR"))) {
+
         %>
         <script>
-            window.alert("Usuario registrado correctamente. En un máximo de 24 hrs. se procederá a su activación.", "height=200,width=700,titlebar=no,left=300,top=300");
+            window.alert();
         </script> 
-        <%
-                session.setAttribute("mensaje", "novalid");
+        <%  session.setAttribute("mensaje", "novalid");
             } else {
                 session.setAttribute("mensaje", "novalid");
             }

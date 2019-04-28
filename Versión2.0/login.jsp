@@ -31,6 +31,9 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="favicon.ico" rel="shortcut icon">
         <title>BooksCRUD</title>
 
@@ -134,19 +137,24 @@
                 </dd>
             </dl>
         </div>
-
         <!-- Ventana emergente para informar de contraseña logeo erronea si procede-->
-        <%
-            if (session.getAttribute("mensaje").equals("novalidP")) {
-        %>
+        
         <script>
-            window.alert("Error. Contraseña incorrecta. Inténtelo de nuevo.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <%
-                session.setAttribute("mensaje", "novalid");
+            function alert() {
+                <%  if (session.getAttribute("mensaje").equals("novalidP")) { %>
+                        swal('Ha introducido una contraseña erronea.','Por favor, inténtelo nuevamente.', 'error');
+                <%    }if (session.getAttribute("mensaje").equals("noUser")) {%>
+                        swal('Ha introducido un nombre de usuario no existente en nuestra base de datos.','', 'error');
+                <%    }if (session.getAttribute("mensaje").equals("noValid")) {%>
+                        swal('Usuario aún no validado.','El tiempo de activación puede ser de hasta 24 hrs.', 'error');
+                <%    }session.setAttribute("mensaje", "novalid");%>
             }
-        %>
+        </script>
 
+        <script>
+            window.alert();
+        </script>
+        
     </body>
 </html>
 

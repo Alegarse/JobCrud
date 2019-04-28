@@ -22,6 +22,9 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="favicon.ico" rel="shortcut icon">
         <title>BooksCRUD</title>
     </head>
@@ -191,68 +194,36 @@
         </div>
 
         <!-- Ventanas scripts emergentes para informar de mensajes de estado -->
+        
+        <script>
+            function alert() {
+                <%  if (session.getAttribute("mensaje").equals("valid")) { %>
+                        swal('Usuario logeado correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("regE")) {%>
+                        swal('El ISBN del libro a introducir ya existe en la BBDD.','', 'error');
+                <%    }if (session.getAttribute("mensaje").equals("regOK")) {%>
+                        swal('Libro guardado correctamente en la BBDD.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("userD")) {%>
+                        swal('Usuario eliminado correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("userV")) {%>
+                        swal('Usuario validado correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroM")) {%>
+                        swal('Libro modificado correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroB")) {%>
+                        swal('Libro borrado correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("userAV")) {%>
+                        swal('El usuario ya ha sido validado anteriormente.','', 'error');
+                <%    }if (session.getAttribute("mensaje").equals("userCA")) {%>
+                        swal('El usuario ha sido convertido a administrador.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("userAA")) {%>
+                        swal('El usuario ya es administrdor.','', 'error');
+                <%    }session.setAttribute("mensaje", "novalid");%>
+            }
+        </script>
 
-        <% if (session.getAttribute("mensaje").equals("valid")) { %>
         <script>
-            window.alert("Usuario logeado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
+            window.alert();
         </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("regE")) { %>
-        <script>
-            window.alert("Error. El ISBN del libro a introducir ya existe en la BBDD.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("regOK")) { %>
-        <script>
-            window.alert("Libro guardado correctamente en la BBDD.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userD")) { %>
-        <script>
-            window.alert("Usuario eliminado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userV")) { %>
-        <script>
-            window.alert("Usuario validado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroM")) { %>
-        <script>
-            window.alert("Libro modificado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroB")) { %>
-        <script>
-            window.alert("Libro borrado correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userAV")) { %>
-        <script>
-            window.alert("El usuario ya ha sido validado anteriormente.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userCA")) { %>
-        <script>
-            window.alert("El usuario ha sido convertido a administrador.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("userAA")) { %>
-        <script>
-            window.alert("El usuario ya es administrdor.", "height=200,width=700,titlebar=no,left=300,top=300");
-        </script> 
-        <% session.setAttribute("mensaje", "novalid");
-            }%>
-
 
     </body>
 </html>

@@ -23,6 +23,9 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="favicon.ico" rel="shortcut icon">
         <title>BooksCRUD</title>
     </head>
@@ -179,42 +182,28 @@
             </div>
 
             <!-- Ventana emergente para informar de logeo correcto si corresponde-->
-            <% if (session.getAttribute("mensaje").equals("valid")) { %>
+            
             <script>
-                window.alert("Usuario logeado correctamente");
-            </script> 
-            <% session.setAttribute("mensaje", "novalid");
+            function alert() {
+                <%  if (session.getAttribute("mensaje").equals("valid")) { %>
+                        swal('Usuario logeado correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroP")) {%>
+                        swal('Libro pasado a lista de prestados correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroF")) {%>
+                        swal('Libro pasado a lista de favoritos correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroNMG")) {%>
+                        swal('Libro eliminado de mi lista correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroBP")) {%>
+                        swal('Libro devuelto correctamente.','', 'success');
+                <%    }if (session.getAttribute("mensaje").equals("libroEP")) {%>
+                        swal('Ya tiene ese libro en préstamo.','', 'error');
+                <%    }session.setAttribute("mensaje", "novalid");%>
             }
-            if (session.getAttribute("mensaje").equals("libroP")) { %>
-            <script>
-                window.alert("Libro pasado a lista de prestados correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-            </script> 
-            <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroF")) { %>
-            <script>
-                window.alert("Libro pasado a lista de favoritos correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-            </script> 
-            <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroNMG")) { %>
-            <script>
-                window.alert("Libro eliminado de mi lista correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-            </script> 
-            <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroBP")) { %>
-            <script>
-                window.alert("Libro devuelto correctamente.", "height=200,width=700,titlebar=no,left=300,top=300");
-            </script> 
-            <% session.setAttribute("mensaje", "novalid");
-            }
-            if (session.getAttribute("mensaje").equals("libroEP")) { %>
-            <script>
-                window.alert("Error. Ya tiene ese libro en préstamo.", "height=200,width=700,titlebar=no,left=300,top=300");
-            </script> 
-            <% session.setAttribute("mensaje", "novalid");
-            }%>
+        </script>
+
+        <script>
+            window.alert();
+        </script>
 
 
     </body>

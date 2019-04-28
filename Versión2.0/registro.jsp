@@ -31,6 +31,9 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="favicon.ico" rel="shortcut icon">
         <title>BooksCRUD</title>
 
@@ -137,9 +140,14 @@
         </div>
 
         <!-- Ventana emergente para informar de usuario ya existente -->
+        <script>
+            function alert() {
+                swal('El usuario que intenta registrar ya existe en nuestra BBDD', 'Inténtelo de nuevo con otro nombre de usuario.', 'error'); //Tb al final error para fallos
+            }
+        </script>
         <% if (session.getAttribute("mensaje").equals("validEU")) { %>
         <script>
-            window.alert("Error. El usuario que intenta registrar ya existe en nuestra BBDD. Inténtelo de nuevo con otro nombre de usuario", "height=200,width=700,titlebar=no,left=300,top=300");
+            window.alert();
         </script> 
         <% session.setAttribute("mensaje", "novalid");
             }%>

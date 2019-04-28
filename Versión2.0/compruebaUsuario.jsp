@@ -34,7 +34,8 @@
             out.print(numero);
 
             if (numero == 0) {
-                response.sendRedirect("noUser.jsp");
+                session.setAttribute("mensaje", "noUser");
+                response.sendRedirect("login.jsp");
             } else {
                 //Comprobamos si el usuario está validado en la BBDD
                 String compruebaValid = "SELECT verificado FROM usuarios WHERE usuario='" + usuario + "'";
@@ -42,7 +43,8 @@
                 valid.next();
                 int numValid = Integer.parseInt(valid.getString("verificado"));
                 if (numValid == 0) {
-                    response.sendRedirect("noValid.jsp");
+                    session.setAttribute("mensaje", "noValid");
+                    response.sendRedirect("login.jsp");
 
                 } else {
 
