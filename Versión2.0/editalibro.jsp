@@ -82,7 +82,6 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid"><br></div>
         <div class="container-fluid">
 
             <!--  Cabecera para la posibilidad de introducir los datos de un nuevo libro  -->
@@ -92,17 +91,17 @@
                 <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Sinopsis</th><th>Fecha</th><th>Opciones</th><th>
                     </th></tr>
                 <form method="post" action="modilibro.jsp">
-                    <tr><td width="11%"><input type="bigint" class="form-control" name="isbn" value="<%= request.getParameter("isbn")%>" readonly></td>
-                        <td width="15%"><input type="text" class="form-control" required name="autor" 
+                    <tr><td width="11%"><input type="bigint" class="form-control border border-secondary" name="isbn" value="<%= request.getParameter("isbn")%>" readonly></td>
+                        <td width="15%"><input type="text" class="form-control border border-secondary" required name="autor" 
                                                oninvalid="this.setCustomValidity('Por favor, introduzca el autor')" 
                                                oninput="setCustomValidity('')" value="<%= request.getParameter("autor")%>"></td>
-                        <td width="18%"><input type="text" class="form-control" required name="titulo" 
+                        <td width="18%"><input type="text" class="form-control border border-secondary" required name="titulo" 
                                                oninvalid="this.setCustomValidity('Por favor, introduzca el título')" 
                                                oninput="setCustomValidity('')" value="<%= request.getParameter("titulo")%>"></td>
-                        <td width="45%"><input type="longtext" class="form-control" required name="sinopsis" rows="3" 
+                        <td width="45%"><input type="longtext" class="form-control border border-secondary" required name="sinopsis" rows="3" 
                                                oninvalid="this.setCustomValidity('Por favor, introduzca la sinopsis')" 
                                                oninput="setCustomValidity('')" value="<%= request.getParameter("sinopsis")%>"></td>
-                        <td width="6%"><input type="int" class="form-control" required name="fecha" 
+                        <td width="6%"><input type="int" class="form-control border border-secondary" required name="fecha" 
                                               oninvalid="this.setCustomValidity('Por favor, introduzca la fecha')" 
                                               oninput="setCustomValidity('')" value="<%= Integer.parseInt(request.getParameter("fecha"))%>"></td>
                         <td width="3%"><button type="submit" class="btn btn-success">✔</button></td>
@@ -111,7 +110,6 @@
                 </form>
             </table>
         </div>
-        <div class="container-fluid"><br></div>
 
         <div class="container-fluid">
 
@@ -121,28 +119,33 @@
                 <div class="col-6">
                     <table class="table table-hover text-center">
                         <h1 class="display-5 text-center">Listado de usuarios</h1>
-                        <tr><th>Tipo</th><th>Usuario</th><th>Clave</th><th>Activo</th><th>Nombre y apellidos</th><th>Validar usuario</th><th>Eliminar usuario</th></tr>
-                                <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
+                        <tr><th>Tipo</th><th>Usuario</th><th>Activo</th><th>Nombre y apellidos</th><th>Validar usuario</th><th>Eliminar usuario</th><th>Convertir admin</th></tr>
 
+                        <!--  Listado de los usuarios existentes en la BBDD con formateo en tabla  -->
                         <%  while (usuarios.next()) {
                                 out.println("<tr><td>");
                                 out.println(usuarios.getString("tipo") + "</td>");
                                 out.println("<td>" + usuarios.getString("usuario") + "</td>");
-                                out.println("<td>" + usuarios.getString("clave") + "</td>");
                                 out.println("<td>" + usuarios.getString("verificado") + "</td>");
                                 out.println("<td>" + usuarios.getString("nombre") + "</td>");
 
                         %>
                         <td>
-                            <form method="get" action="validaUsuario.jsp">
+                            <form method="post" action="validaUsuario.jsp">
                                 <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
                                 <input type="submit" value="✔" class="btn btn-info"> 
                             </form>
                         </td>
                         <td>
-                            <form method="get" action="eliminaUsuario.jsp">
+                            <form method="post" action="eliminaUsuario.jsp">
                                 <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
                                 <input type="submit" value="✖" class="btn btn-danger"> 
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="convertirAdmin.jsp">
+                                <input type="hidden" name="usuario" value="<%=usuarios.getString("usuario")%>">
+                                <input type="submit" value="⚕" class="btn btn-danger"> 
                             </form>
                         </td>
 
@@ -150,14 +153,14 @@
                     </table>
                 </div>
 
-                <!--  Cargamos los datos de usuarios de la BBDD a un listado  -->
+                <!--  Cargamos los datos de libros de la BBDD a un listado  -->
                 <%  ResultSet libros = s.executeQuery("SELECT * FROM libros ORDER BY fecha DESC");%>
                 <div class="col-6">
-                    <table class="table table-hover table-dark text-center">
+                    <table class="table table-hover table-white text-center">
                         <h1 class="display-5 text-center">Listado de libros</h1>
                         <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Editar</th><th>Borrar</th></tr>
-                                <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
-
+                                
+                        <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
                         <%  while (libros.next()) {
                                 out.println("<tr><td>");
                                 out.println(libros.getString("ISBN") + "</td>");
@@ -165,9 +168,8 @@
                                 out.println("<td>" + libros.getString("titulo") + "</td>");
                         %>
                         <!--  Añadimos botón al final para la opción de modificar cada libro  -->
-
                         <td>
-                            <form method="get" action="editalibro.jsp">
+                            <form method="post" action="editalibro.jsp">
                                 <input type="hidden" name="isbn" value="<%=libros.getString("isbn")%>">
                                 <input type="hidden" name="autor" value="<%=libros.getString("autor")%>">
                                 <input type="hidden" name="titulo" value="<%=libros.getString("titulo")%>">
@@ -178,9 +180,8 @@
                         </td>
 
                         <!-- Añadimos botón al final para la opción de eliminar un libro determinado  -->
-
                         <td>
-                            <form method="get" action="borralibro.jsp">
+                            <form method="post" action="borralibro.jsp">
                                 <input type="hidden" name="isbn" value="<%=libros.getString("isbn")%>"/>
                                 <input type="submit" value="✖" class="btn btn-danger">
                             </form>
