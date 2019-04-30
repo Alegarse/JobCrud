@@ -22,7 +22,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="miestilo.css">
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link href="favicon.ico" rel="shortcut icon">
@@ -35,8 +35,8 @@
                 response.sendRedirect("index.jsp");
             }
         %>
-        <!--  Posibilitar uso de conexión del JSP a BBDD  -->
 
+        <!--  Posibilitar uso de conexión del JSP a BBDD  -->
         <%
             Class.forName("com.mysql.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookscrud", "root", "");
@@ -75,39 +75,36 @@
                         <li class="nav-item">
                             <a class="nav-link btn btn-outline-danger" href="logout.jsp">Cerrar sesión ✕</a>
                         </li>
-
                         <%
                             }
                         %>
-
                     </ul>
                 </div>
             </div>
         </div>
+                    
         <div class="container-fluid">
 
             <!--  Cabecera para la posibilidad de introducir los datos de un nuevo libro  -->
-
             <table class="table table-striped text-center table-success">
                 <h1 class="display-5 text-center">Incorporar nuevo libro a la biblioteca</h1>
                 <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Sinopsis</th><th>Fecha</th><th>Opciones</th><th>
                     </th></tr>
                 <form method="post" action="grabalibro.jsp">
-                    <tr><td><input type="text" class="form-control border border-secondary" required name="isbn" oninvalid="this.setCustomValidity('Por favor, introduzca el ISBN')" 
+                    <tr><td><input type="int" class="form-control border border-secondary" value="ISBN numérico" required name="isbn" oninvalid="this.setCustomValidity('Por favor, introduzca el ISBN')" 
                                    oninput="setCustomValidity('')" size="13"></td>
-                        <td><input type="text" class="form-control border border-secondary" required name="autor" oninvalid="this.setCustomValidity('Por favor, introduzca el autor')" 
+                        <td><input type="text" class="form-control border border-secondary" value="Autor" required name="autor" oninvalid="this.setCustomValidity('Por favor, introduzca el autor')" 
                                    oninput="setCustomValidity('')" size="15"></td>
-                        <td><input type="text" class="form-control border border-secondary" required name="titulo" oninvalid="this.setCustomValidity('Por favor, introduzca el título')" 
+                        <td><input type="text" class="form-control border border-secondary" value="Título" required name="titulo" oninvalid="this.setCustomValidity('Por favor, introduzca el título')" 
                                    oninput="setCustomValidity('')" size="25"></td>
-                        <td><input type="longtext" class="form-control border border-secondary" required name="sinopsis" oninvalid="this.setCustomValidity('Por favor, introduzca la sinopsis')" 
+                        <td><input type="longtext" class="form-control border border-secondary" value="Sinópsis del libro" required name="sinopsis" oninvalid="this.setCustomValidity('Por favor, introduzca la sinopsis')" 
                                    oninput="setCustomValidity('')" size="80"></td>
-                        <td><input type="int" class="form-control border border-secondary" required name="fecha" oninvalid="this.setCustomValidity('Por favor, introduzca la fecha')" 
+                        <td><input type="int" class="form-control border border-secondary" value="Año YYYY" value="" onclick="validarFormulario()" required name="fecha" oninvalid="this.setCustomValidity('Por favor, introduzca la fecha')" 
                                    oninput="setCustomValidity('')" size="6"></td>
                         <td><input type="submit" value="⛃ Grabar libro" class="btn btn-primary"></td></tr>
                 </form>
             </table>
         </div>
-
         <div class="container-fluid">
 
             <!--  Cargamos los datos de usuarios de la BBDD a un listado  -->
@@ -156,8 +153,8 @@
                     <table class="table table-hover table-white text-center">
                         <h1 class="display-5 text-center">Listado de libros</h1>
                         <tr><th>ISBN</th><th>Autor</th><th>Título</th><th>Editar</th><th>Borrar</th></tr>
-                                <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
-
+                                
+                        <%--  Listado de los usuarios existentes en la BBDD con formateo en tabla  --%>
                         <%  while (libros.next()) {
                                 out.println("<tr><td>");
                                 out.println(libros.getString("ISBN") + "</td>");
@@ -165,7 +162,6 @@
                                 out.println("<td>" + libros.getString("titulo") + "</td>");
                         %>
                         <!--  Añadimos botón al final para la opción de modificar cada libro  -->
-
                         <td>
                             <form method="post" action="editalibro.jsp">
                                 <input type="hidden" name="isbn" value="<%=libros.getString("isbn")%>">
@@ -178,7 +174,6 @@
                         </td>
 
                         <!-- Añadimos botón al final para la opción de eliminar un libro determinado  -->
-
                         <td>
                             <form method="post" action="borralibro.jsp">
                                 <input type="hidden" name="isbn" value="<%=libros.getString("isbn")%>"/>
@@ -194,30 +189,39 @@
         </div>
 
         <!-- Ventanas scripts emergentes para informar de mensajes de estado -->
-        
         <script>
             function alert() {
-                <%  if (session.getAttribute("mensaje").equals("valid")) { %>
-                        swal('Usuario logeado correctamente.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("regE")) {%>
-                        swal('El ISBN del libro a introducir ya existe en la BBDD.','', 'error');
-                <%    }if (session.getAttribute("mensaje").equals("regOK")) {%>
-                        swal('Libro guardado correctamente en la BBDD.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("userD")) {%>
-                        swal('Usuario eliminado correctamente.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("userV")) {%>
-                        swal('Usuario validado correctamente.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("libroM")) {%>
-                        swal('Libro modificado correctamente.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("libroB")) {%>
-                        swal('Libro borrado correctamente.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("userAV")) {%>
-                        swal('El usuario ya ha sido validado anteriormente.','', 'error');
-                <%    }if (session.getAttribute("mensaje").equals("userCA")) {%>
-                        swal('El usuario ha sido convertido a administrador.','', 'success');
-                <%    }if (session.getAttribute("mensaje").equals("userAA")) {%>
-                        swal('El usuario ya es administrdor.','', 'error');
-                <%    }session.setAttribute("mensaje", "novalid");%>
+            <%  if (session.getAttribute("mensaje").equals("valid")) { %>
+                swal('Usuario logeado correctamente.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("regE")) {%>
+                swal('El ISBN del libro a introducir ya existe en la BBDD.', '', 'error');
+            <%    }
+                if (session.getAttribute("mensaje").equals("regOK")) {%>
+                swal('Libro guardado correctamente en la BBDD.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("userD")) {%>
+                swal('Usuario eliminado correctamente.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("userV")) {%>
+                swal('Usuario validado correctamente.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("libroM")) {%>
+                swal('Libro modificado correctamente.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("libroB")) {%>
+                swal('Libro borrado correctamente.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("userAV")) {%>
+                swal('El usuario ya ha sido validado anteriormente.', '', 'error');
+            <%    }
+                if (session.getAttribute("mensaje").equals("userCA")) {%>
+                swal('El usuario ha sido convertido a administrador.', '', 'success');
+            <%    }
+                if (session.getAttribute("mensaje").equals("userAA")) {%>
+                swal('El usuario ya es administrdor.', '', 'error');
+            <%    }
+                session.setAttribute("mensaje", "novalid");%>
             }
         </script>
 

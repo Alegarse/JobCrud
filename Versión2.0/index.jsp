@@ -41,7 +41,6 @@
 
 
         <!--  Posibilitar uso de conexión del JSP a BBDD  -->
-
         <%
             Class.forName("com.mysql.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookscrud", "root", "");
