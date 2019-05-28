@@ -107,7 +107,7 @@
         <div class="container-fluid">
 
             <!--  Cargamos los datos de usuarios de la BBDD a un listado  -->
-            <%  ResultSet usuarios = s.executeQuery("SELECT * FROM usuarios");%>
+            <%  ResultSet usuarios = s.executeQuery("SELECT * FROM usuarios ORDER BY usuario");%>
             <div class="row">
                 <div class="col-6">
                     <table class="table table-hover text-center">
@@ -147,7 +147,7 @@
                 </div>
 
                 <!--  Cargamos los datos de libros de la BBDD a un listado  -->
-                <%  ResultSet libros = s.executeQuery("SELECT * FROM libros ORDER BY fecha DESC");%>
+                <%  ResultSet libros = s.executeQuery("SELECT * FROM libros ORDER BY isbn DESC");%>
                 <div class="col-6">
                     <table class="table table-hover table-white text-center">
                         <h1 class="display-5 text-center">Listado de libros</h1>
