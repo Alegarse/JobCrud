@@ -20,7 +20,7 @@
                 Statement s = conexion.createStatement();
                 request.setCharacterEncoding("UTF-8");
 
-                String modifica = "UPDATE leidos SET "
+                String modifica = "UPDATE libros SET "
                         + "autor='" + request.getParameter("autor")
                         + "', titulo='" + request.getParameter("titulo")
                         + "', sinopsis='" + request.getParameter("sinopsis")
