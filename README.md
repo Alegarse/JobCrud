@@ -14,7 +14,7 @@ Mejorada funcionalidad, con sesiones y posibilidad de crear tu propio listado de
 
 ### Capturas de pantalla y descripciÃ³n del contenido
 [![Pantalla inicial](https://github.com/Alegarse/BooksCrud/blob/master/imgs/Inicial2.PNG "Pantalla de listado de libros leidos")](https://github.com/Alegarse/BooksCrud/blob/master/imgs/Inicial2.PNG "Pantalla de listado de libros leidos")
-!(https://github.com/Alegarse/BooksCrud/blob/master/imgs/Inicial2.PNG "Pantalla inicial")
+
 En la pantalla inicial se expone acerca del contenido del CRUD, además de comentarios del autor y links de acceso,registro y visualizado de libros disponibles.
  
 [![Pantalla de listado de libros leidos](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc2.PNG "Pantalla de listado de libros leidos")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc2.PNG "Pantalla de listado de libros leidos")
