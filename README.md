@@ -1,7 +1,7 @@
 # BooksCrud
 Repositorio para la entrega del trabajo de CRUD. Si te gusta, dame una estrella :)
 
-##Version 2.0
+## Version 2.0
 Mejorada funcionalidad, con sesiones y posibilidad de crear tu propio listado de libros en prestamos y favoritos para usuarios, y de gestionar la biblioteca de libros para el/los administradores.
 
 
@@ -13,8 +13,8 @@ Mejorada funcionalidad, con sesiones y posibilidad de crear tu propio listado de
 - Optimizado uso: todas las opciones (Login, Registro, Adiccion libro, Borrado...) se realizan en la misma pantalla.
 
 ### Capturas de pantalla y descripción del contenido
-[![Pantalla inicial](https://github.com/Alegarse/BooksCrud/blob/master/imgs/Inicial2.PNG "Pantalla inicial")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc1.PNG "Pantalla inicial")
-En la pantalla inicial se expone acerca del contenido del CRUD, además de comentarios del autor y links de contacto.
+!(https://github.com/Alegarse/BooksCrud/blob/master/imgs/Inicial2.PNG "Pantalla inicial")
+En la pantalla inicial se expone acerca del contenido del CRUD, adem�s de comentarios del autor y links de acceso,registro y visualizado de libros disponibles.
  
 [![Pantalla de listado de libros leidos](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc2.PNG "Pantalla de listado de libros leidos")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc2.PNG "Pantalla de listado de libros leidos")
 [![Pantalla de listado de libros pendientes de leer](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc3.PNG "Pantalla de listado de libros pendientes de leer")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc3.PNG "Pantalla de listado de libros pendientes de leer")
