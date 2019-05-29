@@ -27,7 +27,7 @@ Aquí un detalle de la zona de contacto presente al pié de la página principal
 
 
 
-##Version 1.0
+## Version 1.0
 Consiste a grosso modo en un directorio de los libros de que dispongo, así como los que tengo pendientes de leer, recomendaciones, etc...
 
 
@@ -50,4 +50,5 @@ En estos apartados podemos visualizar el contenido de los libros que poseemos, s
 Esta es la pantalla en la que se pueden editar los datos de cada seccion de los libros, con la peculiaridad de quedar bloqueado sin posibilidad de modificar el ISBN, ya que es único para cada libro.
 
 [![Detalle de zona de contacto](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc6.PNG "Detalle de zona de contacto")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc6.PNG "Detalle de zona de contacto")
+
 Aquí un detalle de la zona de contacto presente al pié de la página principal, con links a mis perfiles de GitHub, Linkedin y Twitter.
