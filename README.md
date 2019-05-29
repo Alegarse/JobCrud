@@ -23,6 +23,7 @@ Esta es la pantalla de usuario, con listado de libros disponibles, opción de ag
 Esta es la pantalla de administrador, con listado de libros disponibles y posibilidades de edición, adición y borrado. Inclusive muestra usuarios, con opciones de validacion, reconvertir a admin o eliminar.
 
 [![Detalle de zona de contacto](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc6.PNG "Detalle de zona de contacto")](https://github.com/Alegarse/BooksCrud/blob/master/Desc/Desc6.PNG "Detalle de zona de contacto")
+
 Aquí un detalle de la zona de contacto presente al pié de la página principal, con links a mis perfiles de GitHub, Linkedin y Twitter.
 
 
