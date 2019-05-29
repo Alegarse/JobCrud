@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bookscrud;
 
 import com.mysql.jdbc.Connection;
@@ -13,8 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Conexión BBDD. 
+ * Realiza la conexión a la base de datos, de manera que evita que se tenga que 
+ * escribir en cada JSP, además de optimizar que si hay un cambio en la BBDD, solo
+ * deben cambiarse aquí los datos de conexión.
  * @author Alejandro
+ * @version 2.2
  */
 
 /*
@@ -30,6 +29,10 @@ public class ConexionBBDD {
     private static String usuario = "root";
     private static String contrasena = "";
     
+    /**
+     *
+     * @return
+     */
     public static Statement conecta() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
